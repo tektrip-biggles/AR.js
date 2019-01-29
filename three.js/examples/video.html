@@ -18,6 +18,18 @@
 			<source src="video/fiber.mp4" type="video/mp4">
 	</video>
 	
+	<video id="video2" autoplay="" loop="" crossorigin="anonymous" webkit-playsinline="" style="display:none">
+			<!-- <source src="textures/sintel.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+			source src="textures/sintel.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"> -->
+			<source src="video/angular.mp4" type="video/mp4">
+	</video>
+	
+	<video id="video3" autoplay="" loop="" crossorigin="anonymous" webkit-playsinline="" style="display:none">
+			<!-- <source src="textures/sintel.ogv" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+			source src="textures/sintel.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"> -->
+			<source src="video/boxbeat.mp4" type="video/mp4">
+	</video>
+	
 </div><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
@@ -155,15 +167,55 @@
 	texture.magFilter = THREE.LinearFilter;
 	texture.format = THREE.RGBFormat;
 
-	var geometry = new THREE.PlaneGeometry(1,1);
+	var y = 0.5
+	var x = y * 1.77
+	var geometry = new THREE.PlaneGeometry(x,y);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
 	var plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
 	
-	plane.position.x	= 	1.5
-	plane.position.z 	=	1.5
-	plane.position.y	= 	0.1
-	plane.rotation.x 	=	0.25
+	plane.position.x	= 	1
+	plane.position.z 	=	-1
+	plane.position.y	= 	0
+	plane.rotation.x 	=	1.5
+	arWorldRoot.add( plane );
+
+	var video = document.getElementById( 'video2' );
+	var texture = new THREE.VideoTexture( video );
+	texture.minFilter = THREE.LinearFilter;
+	texture.magFilter = THREE.LinearFilter;
+	texture.format = THREE.RGBFormat;
+
+	var y = 0.5
+	var x = y * 1.77
+	var geometry = new THREE.PlaneGeometry(x,y);
+	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
+	var plane = new THREE.Mesh( geometry, material );
+	scene.add( plane );
+	
+	plane.position.x	= 	-1
+	plane.position.z 	=	-1
+	plane.position.y	= 	0
+	plane.rotation.x 	=	1.5
+	arWorldRoot.add( plane );
+
+	var video = document.getElementById( 'video3' );
+	var texture = new THREE.VideoTexture( video );
+	texture.minFilter = THREE.LinearFilter;
+	texture.magFilter = THREE.LinearFilter;
+	texture.format = THREE.RGBFormat;
+
+	var y = 0.5
+	var x = y * 1.77
+	var geometry = new THREE.PlaneGeometry(x,y);
+	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
+	var plane = new THREE.Mesh( geometry, material );
+	scene.add( plane );
+	
+	plane.position.x	= 	1
+	plane.position.z 	=	1
+	plane.position.y	= 	0
+	plane.rotation.x 	=	1.5
 	arWorldRoot.add( plane );	
 
 
