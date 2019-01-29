@@ -145,8 +145,6 @@
 		mesh.rotation.x += 0.1
 	})
 	
-
-	
 	var video = document.getElementById( 'video' );
 
 	var texture = new THREE.VideoTexture( video );
@@ -154,14 +152,14 @@
 	texture.magFilter = THREE.LinearFilter;
 	texture.format = THREE.RGBFormat;
 
-	var geometry = new THREE.PlaneGeometry( 1, 1 );
+	var geometry = new THREE.PlaneGeometry(1,1);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-	var plane = new THREE.Mesh( geometry, material );
-	scene.add( plane );
+	var mesh = new THREE.Mesh( geometry, material );
+	scene.add( mesh );
 	
-	plane.position.x	= 0.5
-	plane.position.y	= 0.5
-	arWorldRoot.add( plane );
+	mesh.position.x	= 1
+	mesh.position.y	= 1
+	arWorldRoot.add( mesh );
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
