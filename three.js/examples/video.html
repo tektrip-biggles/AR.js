@@ -155,7 +155,7 @@
 	texture.magFilter = THREE.LinearFilter;
 	texture.format = THREE.RGBFormat;
 
-	var geometry = new THREE.PlaneGeometry(16,9);
+	var geometry = new THREE.PlaneGeometry(1,1);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
 	var plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
