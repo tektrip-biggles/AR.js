@@ -3,7 +3,6 @@
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
-<script src="js/deps/vreticle.js"></script>
 <!-- ar.js -->
 <script src="../build/ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
@@ -61,7 +60,6 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
-	var reticle = vreticle.Reticle(camera);
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -162,8 +160,7 @@
 	plane.position.z 	=	-0.5
 	plane.position.y	= 	0
 	plane.rotation.x 	=	(-90 * Math.PI / 180)
-	arWorldRoot.add( plane1 );
-	reticle.add_collider(plane1);
+	arWorldRoot.add( plane );
 
 	var video = document.getElementById( 'video2' );
 	var texture = new THREE.VideoTexture( video );
@@ -182,7 +179,7 @@
 	plane.position.z 	=	-0.5
 	plane.position.y	= 	0
 	plane.rotation.x 	=	(-90 * Math.PI / 180)
-	arWorldRoot.add( plane2 );
+	arWorldRoot.add( plane );
 
 	var video = document.getElementById( 'video3' );
 	var texture = new THREE.VideoTexture( video );
@@ -219,7 +216,6 @@
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
-		reticle.reticle_loop();
 		requestAnimationFrame( animate );
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
@@ -254,14 +250,6 @@
 	  video1.muted = true ;
 	  video2.muted = true ;
 	  video3.muted = true ;
-	}
-
-	plane1.ongazeover = function(){
-		video1.muted = false ;
-	}
-
-	plane1.ongazeout = function(){
-  	video1.muted = true ;
 	}
 
 </script></body>
