@@ -157,12 +157,12 @@
 
 	var geometry = new THREE.PlaneGeometry(1,1);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-	var mesh = new THREE.Mesh( geometry, material );
-	scene.add( mesh );
+	var plane = new THREE.Mesh( geometry, material );
+	scene.add( plane );
 	
-	mesh.position.x	= 1
-	mesh.position.y	= 0.5
-	arWorldRoot.add( mesh );	
+	plane.position.x	= 1
+	plane.position.y	= 0.5
+	arWorldRoot.add( plane );	
 
 
 	//////////////////////////////////////////////////////////////////////////////////
