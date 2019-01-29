@@ -36,8 +36,8 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
-		// antialias	: true,
-		alpha: true
+		antialias	: true,
+		alpha		: true
 	});
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	// renderer.setPixelRatio( 1/2 );
@@ -140,6 +140,7 @@
 	var arWorldRoot = smoothedRoot
 	// add a torus knot	
 	
+	/*
 	var geometry	= new THREE.CubeGeometry(1,1,1);
 	var material	= new THREE.MeshNormalMaterial({
 		transparent : true,
@@ -160,7 +161,8 @@
 	onRenderFcts.push(function(){
 		mesh.rotation.x += 0.1
 	})
-
+	*/
+	
 	var video = document.getElementById( 'video' );
 	var texture = new THREE.VideoTexture( video );
 	texture.minFilter = THREE.LinearFilter;
@@ -174,8 +176,8 @@
 	var plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
 	
-	plane.position.x	= 	1
-	plane.position.z 	=	-1
+	plane.position.x	= 	0.5
+	plane.position.z 	=	-0.5
 	plane.position.y	= 	0
 	plane.rotation.x 	=	1.5
 	arWorldRoot.add( plane );
@@ -193,8 +195,8 @@
 	var plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
 	
-	plane.position.x	= 	-1
-	plane.position.z 	=	-1
+	plane.position.x	= 	-0.5
+	plane.position.z 	=	-0.5
 	plane.position.y	= 	0
 	plane.rotation.x 	=	1.5
 	arWorldRoot.add( plane );
@@ -212,8 +214,8 @@
 	var plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
 	
-	plane.position.x	= 	1
-	plane.position.z 	=	1
+	plane.position.x	= 	0.5
+	plane.position.z 	=	0.5
 	plane.position.y	= 	0
 	plane.rotation.x 	=	1.5
 	arWorldRoot.add( plane );	
