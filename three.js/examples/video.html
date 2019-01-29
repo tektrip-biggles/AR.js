@@ -56,7 +56,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
-	var reticle = vreticle.Reticle(camera);
+	//var reticle = vreticle.Reticle(camera);
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -159,16 +159,6 @@
 	plane1.rotation.x 	=	(-90 * Math.PI / 180)
 	arWorldRoot.add( plane1 );
 
-	plane1.ongazeover = function(){
-		video1.muted = false
-	}
-
-	plane1.ongazeout = function(){
-	  video1.muted = true
-	}
-
-	reticle.add_collider( plane1 );
-
 	var video = document.getElementById( 'video2' );
 	var texture = new THREE.VideoTexture( video );
 	texture.minFilter = THREE.LinearFilter;
@@ -187,19 +177,6 @@
 	plane2.position.y	= 	0
 	plane2.rotation.x 	=	(-90 * Math.PI / 180)
 	arWorldRoot.add( plane2 );
-
-	plane2.ongazeover = function(){
-		video2.pause();
-		video2.currentTime = 0;
-		video2.play();
-		video2.muted = false
-	}
-
-	plane2.ongazeout = function(){
-	  video2.muted = true
-	}
-
-	reticle.add_collider( plane2 );
 
 	var video = document.getElementById( 'video3' );
 	var texture = new THREE.VideoTexture( video );
@@ -220,6 +197,30 @@
 	plane3.rotation.x 	=	(-90 * Math.PI / 180)
 	arWorldRoot.add( plane3 );
 
+	/*
+	plane1.ongazeover = function(){
+		video1.muted = false
+	}
+
+	plane1.ongazeout = function(){
+	  video1.muted = true
+	}
+
+	reticle.add_collider( plane1 );
+
+	plane2.ongazeover = function(){
+		video2.pause();
+		video2.currentTime = 0;
+		video2.play();
+		video2.muted = false
+	}
+
+	plane2.ongazeout = function(){
+	  video2.muted = true
+	}
+
+	reticle.add_collider( plane2 );
+
 	plane3.ongazeover = function(){
 		video3.play();
 		video3.muted = false
@@ -232,6 +233,7 @@
 	}
 
 	reticle.add_collider( plane3 );
+	*/
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -248,7 +250,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
-		reticle.reticle_loop();
+		//reticle.reticle_loop();
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
