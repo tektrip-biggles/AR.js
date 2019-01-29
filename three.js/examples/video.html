@@ -3,6 +3,7 @@
 <!-- three.js library -->
 <script src='vendor/three.js/build/three.min.js'></script>
 <script src="vendor/three.js/examples/js/libs/stats.min.js"></script>
+<script src="vendor/vreticle.js"></script>
 <!-- ar.js -->
 <script src="../build/ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
@@ -60,6 +61,7 @@
 	//////////////////////////////////////////////////////////////////////////////////
 	// Create a camera
 	var camera = new THREE.Camera();
+	var reticle = vreticle.Reticle(camera);
 	scene.add(camera);
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -153,14 +155,24 @@
 	var x = y * 1.77
 	var geometry = new THREE.PlaneGeometry(x,y);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
-	var plane = new THREE.Mesh( geometry, material );
-	scene.add( plane );
+	var plane1 = new THREE.Mesh( geometry, material );
+	scene.add( plane1 );
 
-	plane.position.x	= 	0.5
-	plane.position.z 	=	-0.5
-	plane.position.y	= 	0
-	plane.rotation.x 	=	(-90 * Math.PI / 180)
-	arWorldRoot.add( plane );
+	plane1.position.x	= 	0.5
+	plane1.position.z 	=	-0.5
+	plane1.position.y	= 	0
+	plane1.rotation.x 	=	(-90 * Math.PI / 180)
+	arWorldRoot.add( plane1 );
+
+	plane1.ongazeover = function(){
+	  video1.muted = false;
+	}
+
+	plane1.ongazeout = function(){
+	  video1.muted = true;
+	}
+
+	reticle.add_collider( plane1 );
 
 	var video = document.getElementById( 'video2' );
 	var texture = new THREE.VideoTexture( video );
@@ -172,14 +184,24 @@
 	var x = y * 1.77
 	var geometry = new THREE.PlaneGeometry(x,y);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
-	var plane = new THREE.Mesh( geometry, material );
-	scene.add( plane );
+	var plane2 = new THREE.Mesh( geometry, material );
+	scene.add( plane2 );
 
-	plane.position.x	= 	-0.5
-	plane.position.z 	=	-0.5
-	plane.position.y	= 	0
-	plane.rotation.x 	=	(-90 * Math.PI / 180)
-	arWorldRoot.add( plane );
+	plane2.position.x	= 	-0.5
+	plane2.position.z 	=	-0.5
+	plane2.position.y	= 	0
+	plane2.rotation.x 	=	(-90 * Math.PI / 180)
+	arWorldRoot.add( plane2 );
+
+	plane2.ongazeover = function(){
+	  video2.muted = false;
+	}
+
+	plane2.ongazeout = function(){
+	  video2.muted = true;
+	}
+
+	reticle.add_collider( plane2 );
 
 	var video = document.getElementById( 'video3' );
 	var texture = new THREE.VideoTexture( video );
@@ -191,16 +213,24 @@
 	var x = y * 1.77
 	var geometry = new THREE.PlaneGeometry(x,y);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
-	var plane = new THREE.Mesh( geometry, material );
-	scene.add( plane );
+	var plane3 = new THREE.Mesh( geometry, material );
+	scene.add( plane3 );
 
-	plane.position.x	= 	0.5
-	plane.position.z 	=	0.5
-	plane.position.y	= 	0
-	plane.rotation.x 	=	(-90 * Math.PI / 180)
-	arWorldRoot.add( plane );
+	plane3.position.x	= 	0.5
+	plane3.position.z 	=	0.5
+	plane3.position.y	= 	0
+	plane3.rotation.x 	=	(-90 * Math.PI / 180)
+	arWorldRoot.add( plane3 );
 
+	plane3.ongazeover = function(){
+	  video3.muted = false;
+	}
 
+	plane2.ongazeout = function(){
+	  video3.muted = true;
+	}
+
+	reticle.add_collider( plane3 );
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -217,6 +247,7 @@
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
 		requestAnimationFrame( animate );
+		reticle.reticle_loop();
 		// measure time
 		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
 		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
