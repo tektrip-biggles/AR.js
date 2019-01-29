@@ -221,11 +221,14 @@
 	arWorldRoot.add( plane3 );
 
 	plane3.ongazeover = function(){
-	  video3.muted = false
+		video3.play();
+		video3.muted = false
 	}
 
 	plane3.ongazeout = function(){
-	  video3.muted = true
+		video3.pause();
+		//video3.currentTime = 0;
+		video3.muted = true
 	}
 
 	reticle.add_collider( plane3 );
@@ -259,7 +262,7 @@
 	function playVids() {
 		video1.play()
 		video2.play()
-		video3.play()
+		//video3.play()
 	}
 
 	function muteVids() {
