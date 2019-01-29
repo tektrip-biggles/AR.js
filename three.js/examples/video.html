@@ -155,15 +155,15 @@
 	texture.magFilter = THREE.LinearFilter;
 	texture.format = THREE.RGBFormat;
 
-	var geometry = new THREE.PlaneGeometry(1,1);
+	var geometry = new THREE.PlaneGeometry(16,9);
 	var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
 	var plane = new THREE.Mesh( geometry, material );
 	scene.add( plane );
 	
-	plane.position.x	= 	1
-	plane.position.z 	=	1
+	plane.position.x	= 	1.5
+	plane.position.z 	=	1.5
 	plane.position.y	= 	0.1
-	plane.rotation.x 	=	90
+	plane.rotation.x 	=	0.25
 	arWorldRoot.add( plane );	
 
 
