@@ -13,15 +13,15 @@
 	<br/>
 	Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@jerome_etienne</a> -->
 	
-	<video id="video1" autoplay="" loop="" webkit-playsinline="" crossorigin="anonymous" style="display:none">
+	<video id="video1" autoplay loop webkit-playsinline crossOrigin="anonymous"  style="display:none">
 			<source src="https://cabe.github.io/AR.js/three.js/examples/video/fiber.mp4" type="video/mp4">
 	</video>
 	
-	<video id="video2" autoplay="" loop="" webkit-playsinline="" crossorigin="anonymous" style="display:none">
+	<video id="video2" autoplay loop webkit-playsinline crossOrigin="anonymous" style="display:none">
 			<source src="https://cabe.github.io/AR.js/three.js/examples/video/moonvirus.mp4" type="video/mp4">
 	</video>
 	
-	<video id="video3" autoplay="" loop="" webkit-playsinline="" crossorigin="anonymous" style="display:none">
+	<video id="video3" autoplay loop webkit-playsinline crossOrigin="anonymous" style="display:none">
 			<source src="https://cabe.github.io/AR.js/three.js/examples/video/okkkk.mp4" type="video/mp4">
 	</video>
 	
@@ -33,6 +33,7 @@
 </div><script>
 
 	muteVids()
+	//playVids()
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
@@ -261,6 +262,12 @@
 	  video3.muted = false ; 
 	  video3.play()
 	} 
+	
+	function playVids() { 
+		video1.play()
+		video2.play()
+		video3.play()
+	}
 	
 	function muteVids() { 
 	  video1.muted = true ; 
