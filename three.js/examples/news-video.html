@@ -18,6 +18,8 @@
     //      Init
     //////////////////////////////////////////////////////////////////////////////////
 
+    video1.play()
+
     // init renderer
     var renderer    = new THREE.WebGLRenderer({
         antialias: true,
@@ -64,18 +66,18 @@
     })
 
     arToolkitSource.init(function onReady(){
-        onResize()
+        onResizeElement()
     })
     
     // handle resize
     window.addEventListener('resize', function(){
-        onResize()
+        onResizeElement()
     })
     function onResize(){
-        arToolkitSource.onResize()  
-        arToolkitSource.copySizeTo(renderer.domElement) 
+        arToolkitSource.onResizeElement()  
+        arToolkitSource.copyElementSizeTo(renderer.domElement) 
         if( arToolkitContext.arController !== null ){
-            arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)    
+            arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas)    
         }   
     }
     ////////////////////////////////////////////////////////////////////////////////
