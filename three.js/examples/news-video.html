@@ -6,16 +6,13 @@
 <script src="../build/ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
-<!-- <a href="https://github.com/jeromeetienne/AR.js/" target="_blank">AR.js</a> - three.js camera transform
-    <br/>
-    Contact me any time at <a href='https://twitter.com/jerome_etienne' target='_blank'>@jerome_etienne</a>
--->
-    <video id="video1" loop webkit-playsinline crossOrigin="anonymous">
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+    <div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+    <video id="video1" loop webkit-playsinline crossOrigin="anonymous" style="display:none">
             <source src="https://cabe.github.io/AR.js/three.js/examples/video/fiber.mp4" type="video/mp4">
     </video>
-
-</div><script>
+    </div>
+<script>
     //////////////////////////////////////////////////////////////////////////////////
     //      Init
     //////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +23,9 @@
         alpha: true
     });
     renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-    renderer.setSize( 640, 480 );
+    // renderer.setSize( 640, 480 );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
     renderer.domElement.style.position = 'absolute'
     renderer.domElement.style.top = '0px'
     renderer.domElement.style.left = '0px'
@@ -87,6 +86,11 @@
     var arToolkitContext = new THREEx.ArToolkitContext({
         cameraParametersUrl: THREEx.ArToolkitContext.baseURL + '../data/data/camera_para.dat',
         detectionMode: 'mono',
+        maxDetectionRate: 30,
+        //canvasWidth: 80*3,
+        //canvasHeight: 60*3,
+        canvasWidth: window.innerWidth,
+        canvasHeight: window.innerHeight
     })
     // initialize it
     arToolkitContext.init(function onCompleted(){
