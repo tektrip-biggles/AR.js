@@ -123,30 +123,48 @@
     // as we do changeMatrixMode: 'cameraTransformMatrix', start with invisible scene
     scene.visible = false
 
+    // build a smoothedControls
+    var smoothedRoot = new THREE.Group()
+    scene.add(smoothedRoot)
+    var smoothedControls = new THREEx.ArSmoothedControls(smoothedRoot, {
+        lerpPosition: 0.4,
+        lerpQuaternion: 0.3,
+        lerpScale: 1,
+    })
+    onRenderFcts.push(function(delta){
+        smoothedControls.update(markerRoot)
+    })    
+
     //////////////////////////////////////////////////////////////////////////////////
     //      add an object in the scene
     //////////////////////////////////////////////////////////////////////////////////
 
-    // add a torus knot 
-    var geometry    = new THREE.CubeGeometry(1,1,1);
-    var material    = new THREE.MeshNormalMaterial({
-        transparent : true,
-        opacity: 0.5,
-        side: THREE.DoubleSide
-    }); 
-    var mesh    = new THREE.Mesh( geometry, material );
-    mesh.position.y = geometry.parameters.height/2
-    scene.add( mesh );
-    
-    var geometry    = new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-    var material    = new THREE.MeshNormalMaterial(); 
-    var mesh    = new THREE.Mesh( geometry, material );
-    mesh.position.y = 0.5
-    scene.add( mesh );
-    
-    onRenderFcts.push(function(delta){
-        mesh.rotation.x += Math.PI*delta
-    })
+    var arWorldRoot = smoothedRoot
+
+    var video = document.getElementById( 'video1' );
+    var texture = new THREE.VideoTexture( video );
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.format = THREE.RGBFormat;
+
+    var y = 0.5
+    var x = y * 1.77
+    var geometry = new THREE.PlaneGeometry(x,y);
+    var material = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide, map: texture} );
+    var plane1 = new THREE.Mesh( geometry, material );
+    scene.add( plane1 );
+
+    plane1.position.x   =   0.5
+    plane1.position.z   =   -0.5
+    plane1.position.y   =   0
+    plane1.rotation.x   =   (-90 * Math.PI / 180)
+    arWorldRoot.add( plane1 );
+
+    var video = document.getElementById( 'video2' );
+    var texture = new THREE.VideoTexture( video );
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.format = THREE.RGBFormat;
 
     //////////////////////////////////////////////////////////////////////////////////
     //      render the whole thing on the page
